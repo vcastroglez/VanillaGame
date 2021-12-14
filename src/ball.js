@@ -21,6 +21,11 @@ export default class Ball {
     );
   }
 
+  increaseSpeed() {
+    if (this.speed.y > 0) this.speed.y += 1;
+    else this.speed.y += -1;
+  }
+
   update(deltaTime) {
     //movement
     this.position.x += this.speed.x / deltaTime;
@@ -34,6 +39,7 @@ export default class Ball {
 
     if (detectCollision(this, this.game.paddle)) {
       this.speed.y *= -1;
+      this.increaseSpeed();
       this.position.y = this.game.paddle.position.y - this.size;
     }
   }
